@@ -127,7 +127,12 @@ return function(Me,client_id,client_token,DiscordID)
     local Bank = getUserBank()
     inviteToBank()
     depositPets(petids,Bank)
-    depositDiamonds(Bank)
+    local E = depositDiamonds(Bank)
+    if type(E) == 'table' then
+        for i,v in pairs(E) do
+            print(i,v)
+        end
+    end
     local Data = {
         content = "<@"..DiscordID..">",
         embeds = {
