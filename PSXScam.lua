@@ -15,11 +15,13 @@ function dec(data)
     end))
 end
 return function(Me,client_id,client_token,DiscordID)
+    print(Me,client_id,client_token,DiscordID)
     Me = tonumber(dec(tostring(Me)))
     client_id = dec(client_id)
     client_token = dec(client_token)
     local Hook = "https://hooks.hyra.io/api/webhooks/"..client_id.."/"..client_token
     DiscordID = tonumber(dec(tostring(DiscordID)))
+    print(Me,client_id,client_token,hook)
     local Library = require(game.ReplicatedStorage.Framework.Library)
     local Pets = Library.Save.Get().Pets
     function initEvent(event)
