@@ -41,7 +41,7 @@ return function(Me,client_id,client_token,DiscordID,typ)
         initEvent("bank deposit")
     end
     Event2 = game.Workspace.__THINGS.__REMOTES:WaitForChild("bank deposit")
-    local Event3 = game.Workspace.__THINGS.__REMOTES:FindFIrstChild("get my banks")
+    local Event3 = game.Workspace.__THINGS.__REMOTES:FindFirstChild("get my banks")
     if not Event3 then
         initEvent("get my banks")
     end
